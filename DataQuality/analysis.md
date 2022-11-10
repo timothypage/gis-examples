@@ -1,7 +1,10 @@
-xpath -e '//mdq:DQ_DataQuality'
-xpath -e '//dataqual' 
+# Summary of FGDC -> ISO 19115-1 translation through mdTranslator
 
-[USGS_US_Topo_Map_Collection.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_US_Topo_Map_Collection.xml)
+see the `xml/` folder for example files.  Below is a summary of the data quality translation for each CSDGM file through the new mdTranslator implementation. in the `xml/` folder is the xlst to iso translation for each csdgm file.
+
+you can play around with the translator here: https://dev-translator.mdeditor.org/demo
+
+## [USGS_US_Topo_Map_Collection.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_US_Topo_Map_Collection.xml)
 
 works
 
@@ -30,17 +33,7 @@ fgdc
       </vertacc>
     </posacc>
     <lineage>
-      <procstep>
-        <procdesc>The geospatial PDFs for this product are created as follows. All geospatial content is
-          taken from national geospatial databases under the stewardship of USGS data programs. The
-          NAIP imagery is provided by a seamless tile service that delivers image data at the
-          resolution and quality of the source imagery. The raster and vector data, including grids
-          and collar information, are processed using ESRI ArcGIS software and exported as a geospatial PDF.
-          application, which includes post-processing to embed the metadata XML document.
-          Any use of trade, product, or firm names in this publication is for descriptive purposes
-          only and does not imply endorsement by the U.S. Government.</procdesc>
-        <procdate>2022</procdate>
-      </procstep>
+      ...
     </lineage>
   </dataqual>
 ```
@@ -147,7 +140,7 @@ mdTranslator iso
 ```
 
 
-https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_3DEP_DEM_Source_OPR_Collection.xml
+## [USGS_3DEP_DEM_Source_OPR_Collection.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_3DEP_DEM_Source_OPR_Collection.xml)
 
 works
 
@@ -162,10 +155,7 @@ fgdc
     </vertacc>
   </posacc>
   <lineage>
-    <procstep>
-      <procdesc>Original project data were provided to the National Geospatial Technical Operations Center (NGTOC) in Rolla, MO and/or Denver, CO. The data were reviewed for quality and accuracy before publication. Data are provided in the original source resolution and spatial reference.</procdesc>
-      <procdate>2022</procdate>
-    </procstep>
+    ...
   </lineage>
 </dataqual>
 ```
@@ -242,7 +232,7 @@ mdTranslator iso
 </mdq:DQ_DataQuality>
 ```
 
-https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_3DEP_LidarPointCloud_Collection-csdgm.xml
+## [USGS_3DEP_LidarPointCloud_Collection-csdgm.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_3DEP_LidarPointCloud_Collection-csdgm.xml)
 
 works
 
@@ -255,10 +245,7 @@ fgdc
   <logic>Please refer to the Metadata Section at the end of this document for a live link to a copy of the original data source's metadata file if one was provided.</logic>
   <complete>The lidar collection has been acquired by the USGS through contracts, partnerships with other Federal, state, tribal, or regional agencies, from direct purchases from private industry vendors, and through volunteer contributions from the science community. While USGS makes every effort to provide accurate and complete information, USGS provides no warranty, expressed or implied, as to the accuracy, reliability or completeness of furnished lidar point clouds. Please note that USGS does not control and cannot guarantee the relevance, timeliness, or accuracy of these outside materials.</complete>
   <lineage>
-    <procstep>
-      <procdesc>unknown</procdesc>
-      <procdate>2022</procdate>
-    </procstep>
+    ...
   </lineage>
 </dataqual>
 ```
@@ -337,26 +324,26 @@ mdTranslator iso
 
 
 
-https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/National_Wetlands_Inventory_Wetlands-csdgm.xml
+## [National_Wetlands_Inventory_Wetlands-csdgm.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/National_Wetlands_Inventory_Wetlands-csdgm.xml)
 
-  Message: 1
-  ERROR: ISO-19115-1 writer: spatial reference system identifier is missing: CONTEXT is resource spatial reference system
+Message: 1
+ERROR: ISO-19115-1 writer: spatial reference system identifier is missing: CONTEXT is resource spatial reference system
 
-  Message: 2
-  ERROR: ISO-19115-1 writer: spatial reference system type is missing: CONTEXT is resource spatial reference system
+Message: 2
+ERROR: ISO-19115-1 writer: spatial reference system type is missing: CONTEXT is resource spatial reference system
 
-  Message: 3
-  ERROR: ISO-19115-1 writer: spatial reference system identifier is missing: CONTEXT is resource spatial reference system
+Message: 3
+ERROR: ISO-19115-1 writer: spatial reference system identifier is missing: CONTEXT is resource spatial reference system
 
-  Message: 4
-  ERROR: ISO-19115-1 writer: spatial reference system type is missing: CONTEXT is resource spatial reference system
+Message: 4
+ERROR: ISO-19115-1 writer: spatial reference system type is missing: CONTEXT is resource spatial reference system
 
-  -f=false works though
+-f=false works though
 
-fgdc
 
     xpath -n -e '//dataqual' ~/geoplatform/gis-examples/DataQuality/xml/National_Wetlands_Inventory_Wetlands-csdgm.xml | xmllint --format - | tail -n +2 | pbcopy
 
+fgdc
 ```xml
 <dataqual>
   <attracc>
@@ -373,15 +360,15 @@ There is a margin error inherent in the use of imagery, thus detailed on-the-gro
 
 Wetlands or other mapped features may have changed since the date or the imagery and/or field work.  There may be occasional differences in polygon boundaries or classifications between the information depicted on the map and the actual conditions on site.</complete>
   <lineage>
-  ...
+    ...
   </lineage>
 </dataqual>
 ```
 
-mdTranslator iso
     
     bundle exec ./bin/mdtranslator translate --reader=fgdc --writer=iso19115_1 ~/geoplatform/gis-examples/DataQuality/xml/National_Wetlands_Inventory_Wetlands-csdgm.xml | xpath -e '//mdq:DQ_DataQuality' | xmllint --format - | tail -n +2
 
+mdTranslator iso
 ```xml
 <mdq:DQ_DataQuality>
   <mdq:scope>
@@ -447,7 +434,7 @@ Wetlands or other mapped features may have changed since the date or the imagery
 ```
 
 
-https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_NHD_Collection.xml
+## [USGS_NHD_Collection.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_NHD_Collection.xml)
 
 
   Message: 1
@@ -458,7 +445,7 @@ https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/USGS_
 
   -f=false works though
 
-    xpath -n -e '//dataqual' ~/geoplatform/gis-examples/DataQuality/xml/USGS_NHD_Collection.xml | xmllint --format - | tail -n +2 | pbcopy
+    xpath -n -e '//dataqual' ~/geoplatform/gis-examples/DataQuality/xml/USGS_NHD_Collection.xml | xmllint --format - | tail -n +2
 
 fgdc
 ```xml
@@ -477,7 +464,7 @@ fgdc
     </vertacc>
   </posacc>
   <lineage>
-  ...
+    ...
   </lineage>
 </dataqual>
 ```
@@ -578,12 +565,12 @@ mdTranslator iso
 ```
 
 
-https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/CSDGM-194_FY14_Metadata_DaikiMaru_2014-csdgm.xml
+## [CSDGM-194_FY14_Metadata_DaikiMaru_2014-csdgm.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/CSDGM-194_FY14_Metadata_DaikiMaru_2014-csdgm.xml)
 
-  ERROR: FGDC reader: Conversion of dateTime string to object failed
+ERROR: FGDC reader: Conversion of dateTime string to object failed
 
 
-https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/Cadastre-csdgm.xml
+## [Cadastre-csdgm.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/Cadastre-csdgm.xml)
 
-  ERROR: FGDC reader: Conversion of dateTime string to object failed
+ERROR: FGDC reader: Conversion of dateTime string to object failed
 
