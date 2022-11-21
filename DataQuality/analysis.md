@@ -564,6 +564,135 @@ mdTranslator iso
 </mdq:DQ_DataQuality>
 ```
 
+## [1bdeb527-844b-4704-a9f6-58818e990c44-csdgm.xml](https://github.com/timothypage/gis-examples/blob/feature/data-quality-analysis/DataQuality/xml/1bdeb527-844b-4704-a9f6-58818e990c44-csdgm.xml)
+
+-f=false works
+
+fgdc
+```xml
+<dataqual>
+  <logic>Valid values = 1;</logic>
+  <complete>Features represented have not been tested for completeness</complete>
+  <posacc>
+    <horizpa>
+      <horizpar>Data were collected using methods that are accurate to within 6-25 meters (EPA National Geospatial Data Policy [NGDP] Accuracy Tier 3). For more information, please see EPA's NGDP at http://epa.gov/geospatial/policies.html)</horizpar>
+      <qhorizpa>
+        <horizpav>30</horizpav>
+        <horizpae>visual inspection</horizpae>
+      </qhorizpa>
+    </horizpa>
+    <vertacc>
+      <vertaccr>Vertical and horizontal accuracy are equivalent to that reported for NHDplus Version 2</vertaccr>
+      <qvertpa>
+        <vertaccv>25</vertaccv>
+        <vertacce>Test performed by NHD and MRLC</vertacce>
+      </qvertpa>
+    </vertacc>
+  </posacc>
+  <lineage>
+    ...
+  </lineage>
+</dataqual>
+```
+
+mdTranslator iso
+```xml
+<mdq:DQ_DataQuality>
+  <mdq:scope>
+    <mcc:MD_Scope>
+      <mcc:level>
+        <mcc:MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="series"/>
+      </mcc:level>
+    </mcc:MD_Scope>
+  </mdq:scope>
+  <mdq:report>
+    <mdq:DQ_NonQuantitativeAttributeCompleteness>
+      <mdq:result>
+        <mdq:DQ_DescriptiveResult>
+                  </mdq:DQ_DescriptiveResult>
+      </mdq:result>
+    </mdq:DQ_NonQuantitativeAttributeCompleteness>
+  </mdq:report>
+  <mdq:report>
+    <mdq:DQ_ConceptualConsistency>
+      <mdq:measure>
+        <mdq:DQ_MeasureReference>
+          <mdq:measureDescription>
+            <gco:CharacterString>Valid values = 1;</gco:CharacterString>
+          </mdq:measureDescription>
+        </mdq:DQ_MeasureReference>
+      </mdq:measure>
+    </mdq:DQ_ConceptualConsistency>
+  </mdq:report>
+  <mdq:report>
+    <mdq:DQ_CompletenessOmission>
+      <mdq:result>
+        <mdq:DQ_DescriptiveResult>
+          <mdq:statement>
+            <gco:CharacterString>Features represented have not been tested for completeness</gco:CharacterString>
+          </mdq:statement>
+        </mdq:DQ_DescriptiveResult>
+      </mdq:result>
+    </mdq:DQ_CompletenessOmission>
+  </mdq:report>
+  <mdq:report>
+    <mdq:DQ_AbsoluteExternalPositionalAccuracy>
+      <mdq:evaluationMethod>
+        <mdq:DQ_EvaluationMethod>
+          <mdq:evaluationMethodDescription>
+            <gco:CharacterString>Data were collected using methods that are accurate to within 6-25 meters (EPA National Geospatial Data Policy [NGDP] Accuracy Tier 3). For more information, please see EPA's NGDP at http://epa.gov/geospatial/policies.html)</gco:CharacterString>
+          </mdq:evaluationMethodDescription>
+        </mdq:DQ_EvaluationMethod>
+      </mdq:evaluationMethod>
+      <mdq:measure>
+        <mdq:DQ_MeasureReference>
+          <mdq:nameOfMeasure>
+            <gco:CharacterString>Horizontal Positional Accuracy Report</gco:CharacterString>
+          </mdq:nameOfMeasure>
+          <mdq:measureDescription>
+            <gco:CharacterString>visual inspection</gco:CharacterString>
+          </mdq:measureDescription>
+        </mdq:DQ_MeasureReference>
+      </mdq:measure>
+      <mdq:result>
+        <mdq:DQ_QuantitativeResult>
+          <mdq:value>
+            <gco:Record>30</gco:Record>
+          </mdq:value>
+        </mdq:DQ_QuantitativeResult>
+      </mdq:result>
+    </mdq:DQ_AbsoluteExternalPositionalAccuracy>
+  </mdq:report>
+  <mdq:report>
+    <mdq:DQ_AbsoluteExternalPositionalAccuracy>
+      <mdq:evaluationMethod>
+        <mdq:DQ_EvaluationMethod>
+          <mdq:evaluationMethodDescription>
+            <gco:CharacterString>Vertical and horizontal accuracy are equivalent to that reported for NHDplus Version 2</gco:CharacterString>
+          </mdq:evaluationMethodDescription>
+        </mdq:DQ_EvaluationMethod>
+      </mdq:evaluationMethod>
+      <mdq:measure>
+        <mdq:DQ_MeasureReference>
+          <mdq:nameOfMeasure>
+            <gco:CharacterString>Vertical Positional Accuracy Report</gco:CharacterString>
+          </mdq:nameOfMeasure>
+          <mdq:measureDescription>
+            <gco:CharacterString>Test performed by NHD and MRLC</gco:CharacterString>
+          </mdq:measureDescription>
+        </mdq:DQ_MeasureReference>
+      </mdq:measure>
+      <mdq:result>
+        <mdq:DQ_QuantitativeResult>
+          <mdq:value>
+            <gco:Record>25</gco:Record>
+          </mdq:value>
+        </mdq:DQ_QuantitativeResult>
+      </mdq:result>
+    </mdq:DQ_AbsoluteExternalPositionalAccuracy>
+  </mdq:report>
+</mdq:DQ_DataQuality>
+```
 
 ## [CSDGM-194_FY14_Metadata_DaikiMaru_2014-csdgm.xml](https://github.com/chris-macdermaid/gis-examples/blob/main/DataQuality/xml/CSDGM-194_FY14_Metadata_DaikiMaru_2014-csdgm.xml)
 
